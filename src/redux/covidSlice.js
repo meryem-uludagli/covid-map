@@ -16,6 +16,7 @@ createSlice({
     builder.addCase(getDetails.rejected, (state, { error }) => {
       state.isLoading = false;
       state.error = error.messsage;
+      state.data = null;
     });
     builder.addCase(getDetails.fulfilled, (state, { payload }) => {
       state.isLoading = false;
