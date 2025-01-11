@@ -1,6 +1,7 @@
 import { createAsyncThunk } from "@reduxjs/toolkit";
 import api from "../utils/api";
 import axios from "axios";
+import millify from "millify";
 
 export const getDetails = createAsyncThunk(
   "/covid/getDetails",
@@ -19,13 +20,15 @@ export const getDetails = createAsyncThunk(
     let data = responses[0].data.response[0];
 
     data = {
-      continent: data?.continent,
+      continent: data.continent,
       country: data.country,
-      day: data.day,
-      cases: data.cases.total,
-      deaths: data.deaths.total,
-      tests: data.tests.total,
-      population: data.population,
+      capital: responses[1].data[0].capital,
+      currency: Object.entries(responses[1].data[0].currencies)[0][1].name,
+      day: new Date(data.day).toLocaleDateString("tr"),
+      cases: millify(data.cases.total),
+      deaths: millify(data.deaths.total),
+      tests: millify(data.tests.total),
+      population: millify(data.population),
       flags: responses[1].data[0].flags,
     };
     return data;

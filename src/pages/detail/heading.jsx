@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 import HeaderLoader from "../../components/loader/header-loader";
 
 const Heading = () => {
-  const { isLoading, data } = useSelector((store) => store);
+  const { isLoading, data } = useSelector((state) => state.covidReducer);
 
   return (
     <div className="flex justify-between items-center">

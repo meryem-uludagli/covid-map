@@ -6,11 +6,15 @@ import { getDetails } from "../../redux/actions";
 import { useParams } from "react-router-dom";
 
 const Content = () => {
-  const { isLoading, error, data } = useSelector((store) => store);
+  const {
+    isLoading = false,
+    error = null,
+    data = {},
+  } = useSelector((state) => state.covidReducer || {});
+
   const dispatch = useDispatch();
   const { code } = useParams();
 
-  // data nesnesini diziye çevir
   const arr = Object.entries(data || {}).filter((i) => i[0] !== "flags");
 
   return (

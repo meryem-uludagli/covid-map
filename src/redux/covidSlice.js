@@ -1,11 +1,12 @@
 import { createSlice } from "@reduxjs/toolkit";
+import { getDetails } from "./actions";
 
 const initialState = {
   isLoading: true,
   error: null,
   data: null,
 };
-createSlice({
+const covidSlice = createSlice({
   name: "covid",
   initialState,
   reducers: {},
